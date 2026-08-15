@@ -1,3 +1,0 @@
-0000000000000000000000000000000000000000 3ffb35327df25b2c204203c8a8a21dee7a4cb079 “Kameshgit config --global user.email “kameshburde35@gmail.com <kamesh@Kameshs-MacBook-Air.local> 1786777105 +0530	commit (initial): Initial commit: profile website scaffold
-3ffb35327df25b2c204203c8a8a21dee7a4cb079 fceed2f24bd429534f6978cf8ef46f4d09e06c44 “Kameshgit config --global user.email “kameshburde35@gmail.com <kamesh@Kameshs-MacBook-Air.local> 1786777113 +0530	commit: Initial commit: profile website scaffold
-fceed2f24bd429534f6978cf8ef46f4d09e06c44 0546b8ad3a725b66f04c8b6257ea62b857841c61 “Kameshgit config --global user.email “kameshburde35@gmail.com <kamesh@Kameshs-MacBook-Air.local> 1786777484 +0530	commit: Remove node_modules from repo and add to .gitignore
