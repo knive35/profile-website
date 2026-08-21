@@ -1,181 +1,295 @@
 export interface SocialLink {
   name: string;
   url: string;
-  iconName: "github" | "linkedin" | "twitter" | "mail" | "globe";
+  iconName: "github" | "linkedin" | "mail";
+}
+
+export interface StatusRow {
+  k: string;
+  v: string;
+}
+
+export interface Counter {
+  label: string;
+  target: number;
+  suffix?: string;
+}
+
+export interface Skill {
+  name: string;
+  level: string;
+  used: string;
+}
+
+export interface SkillGroup {
+  name: string;
+  skills: Skill[];
 }
 
 export interface ExperienceItem {
-  company: string;
   role: string;
+  company: string;
   period: string;
-  location: string;
   description: string;
-  technologies: string[];
+  achievements: string[];
+  tech: string[];
+}
+
+export interface ProjectDetail {
+  k: string;
+  v: string;
 }
 
 export interface ProjectItem {
   id: string;
   title: string;
   description: string;
-  longDescription?: string;
-  tags: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  featured: boolean;
+  badges: string[];
+  techLine: string;
+  detail: ProjectDetail[];
+  githubUrl: string;
 }
 
-export interface SkillCategory {
-  category: string;
-  skills: {
-    name: string;
-    level?: string; // e.g. 'Advanced', 'Proficient'
-    icon?: string;
-  }[];
+export interface ArchNode {
+  name: string;
+  tooltip: string;
+}
+
+export interface LanguageBar {
+  name: string;
+  width: string;
 }
 
 export interface ProfileData {
   name: string;
   title: string;
-  subtitle: string;
-  bio: string;
-  about: {
-    paragraphs: string[];
-    highlights: { label: string; value: string }[];
-  };
-  contact: {
-    email: string;
-    location: string;
-    availability: string;
-  };
-  socials: SocialLink[];
+  tagline: string;
+  experienceYears: string;
+  company: string;
+  companyRole: string;
+  location: string;
+  availability: string;
+  education: string;
+  navLinks: { href: string; label: string }[];
+  statusRows: StatusRow[];
+  counters: Counter[];
+  currentFocus: { headline: string; techLine: string };
+  about: { paragraphs: string[] };
+  skillGroups: SkillGroup[];
   experience: ExperienceItem[];
   projects: ProjectItem[];
-  skillCategories: SkillCategory[];
+  architecture: ArchNode[];
+  languages: LanguageBar[];
+  socials: SocialLink[];
+  email: string;
+  resumeUrl: string;
 }
 
 export const profileData: ProfileData = {
-  name: "Kamesh",
-  title: "Full Stack Software Engineer",
-  subtitle: "Building modern, scalable web applications & seamless user experiences.",
-  bio: "Passionate software engineer specialized in modern web technologies, cloud solutions, and intuitive UI design. Focused on creating performant applications that solve real-world problems.",
+  name: "Kamesh Burde",
+  title: "Senior Software Engineer · Full Stack & Cloud",
+  tagline:
+    "I turn ideas into scalable, production-ready software. Engineering elegant systems across frontend, backend, and cloud.",
+  experienceYears: "7+",
+  company: "Infosys",
+  companyRole: "Specialist Programmer",
+  location: "Bangalore, India",
+  availability: "Open to opportunities",
+  education: "B.Tech, Mathematics and Computing — IIT Guwahati (2014–2018)",
+
+  navLinks: [
+    { href: "#about", label: "About" },
+    { href: "#skills", label: "Skills" },
+    { href: "#experience", label: "Experience" },
+    { href: "#projects", label: "Projects" },
+    { href: "#architecture", label: "Architecture" },
+    { href: "#activity", label: "Activity" },
+    { href: "#contact", label: "Contact" },
+  ],
+
+  statusRows: [
+    { k: "Experience", v: "7+ Years" },
+    { k: "Focus", v: "Full Stack Engineering" },
+    { k: "Cloud", v: "AWS" },
+    { k: "Frontend", v: "React / Next.js / Angular" },
+    { k: "Backend", v: "Java / Node.js" },
+    { k: "Architecture", v: "Microservices / Micro-Frontends" },
+    { k: "Location", v: "Bangalore, India" },
+    { k: "Status", v: "Open to opportunities" },
+  ],
+
+  counters: [
+    { label: "Years experience", target: 7, suffix: "+" },
+    { label: "Core technologies", target: 20, suffix: "+" },
+    { label: "Architecture patterns", target: 3 },
+    { label: "Engineers led", target: 10 },
+  ],
+
+  currentFocus: {
+    headline:
+      "Building scalable full-stack platforms across React, Next.js, Angular and Spring Boot services on AWS — leading a team of 10 engineers.",
+    techLine: "React · Next.js · Angular · Node.js · Java · Spring Boot · AWS",
+  },
+
   about: {
     paragraphs: [
-      "Hello! I'm a passionate full-stack engineer who loves crafting clean code and high-performance digital products.",
-      "With experience across modern web technologies like Next.js, React, Node.js, and Cloud services, I bridging frontend design with robust backend architecture.",
-      "When I'm not coding, you can find me exploring open-source projects, writing technical posts, or learning about new technologies and AI tools."
+      "Senior Full Stack Engineer with 7+ years of experience delivering enterprise-scale applications using React, Next.js, Angular, Java, Spring Boot, Node.js and AWS — with particular depth in micro-frontend architecture, system design and performance optimization.",
+      "At Infosys I lead a team of 10 engineers across the Equinox platform suite — from module-federated frontends to the microservices and cloud infrastructure behind them — conducting code reviews, mentoring, and turning architectural decisions into software that ships reliably.",
+      "B.Tech in Mathematics and Computing from IIT Guwahati (2014–2018).",
     ],
-    highlights: [
-      { label: "Years Experience", value: "3+" },
-      { label: "Projects Completed", value: "15+" },
-      { label: "Technologies Mastered", value: "12+" },
-      { label: "Client / User Satisfaction", value: "100%" }
-    ]
   },
-  contact: {
-    email: "kamesh@example.com",
-    location: "San Francisco, CA (Open to Remote)",
-    availability: "Available for full-time roles & freelance opportunities"
-  },
-  socials: [
-    { name: "GitHub", url: "https://github.com", iconName: "github" },
-    { name: "LinkedIn", url: "https://linkedin.com", iconName: "linkedin" },
-    { name: "X (Twitter)", url: "https://twitter.com", iconName: "twitter" },
-    { name: "Email", url: "mailto:kamesh@example.com", iconName: "mail" }
+
+  skillGroups: [
+    {
+      name: "Frontend",
+      skills: [
+        { name: "React.js", level: "Advanced", used: "Woodside Energy automation platform, Infosys Equinox suite" },
+        { name: "Next.js", level: "Advanced", used: "Infosys Equinox Ultra Storefront" },
+        { name: "Angular", level: "Proficient", used: "Infosys Equinox analytics dashboards" },
+        { name: "JavaScript / TypeScript", level: "Advanced", used: "Core language across all frontend work" },
+        { name: "Redux", level: "Proficient", used: "State management across dashboard applications" },
+        { name: "Material UI", level: "Advanced", used: "Custom components for Woodside Energy, enterprise dashboards" },
+      ],
+    },
+    {
+      name: "Backend",
+      skills: [
+        { name: "Java", level: "Advanced", used: "Enterprise platform services at Infosys" },
+        { name: "Spring Boot", level: "Advanced", used: "Enterprise microservices" },
+        { name: "Node.js / Express", level: "Advanced", used: "Internal APIs and platform services" },
+        { name: "REST APIs", level: "Advanced", used: "All backend integration work" },
+      ],
+    },
+    {
+      name: "Cloud & DevOps",
+      skills: [
+        { name: "AWS EC2 / S3 / Lambda", level: "Proficient", used: "Application hosting, storage & event-driven tasks" },
+        { name: "Docker", level: "Proficient", used: "Containerized service deployment" },
+        { name: "Jenkins / GitHub Actions", level: "Proficient", used: "CI/CD pipelines" },
+      ],
+    },
+    {
+      name: "Database",
+      skills: [
+        { name: "MongoDB", level: "Proficient", used: "Website builder & content-driven platforms" },
+        { name: "MySQL", level: "Proficient", used: "Enterprise relational data" },
+        { name: "PostgreSQL", level: "Proficient", used: "Enterprise relational data" },
+      ],
+    },
+    {
+      name: "Architecture",
+      skills: [
+        { name: "Microservices", level: "Advanced", used: "Enterprise platform suite" },
+        { name: "Micro Frontends", level: "Advanced", used: "Infosys Equinox Ultra Storefront" },
+        { name: "Module Federation", level: "Advanced", used: "Shared-shell frontend architecture" },
+      ],
+    },
+    {
+      name: "Data & Visualization",
+      skills: [
+        { name: "Esri Maps", level: "Proficient", used: "Woodside Energy geospatial platform" },
+        { name: "DataGrid", level: "Proficient", used: "Large-dataset rendering, Woodside Energy" },
+        { name: "Highcharts", level: "Proficient", used: "Analytics dashboards, Infosys Equinox" },
+      ],
+    },
+    {
+      name: "Tools",
+      skills: [
+        { name: "Git / GitHub", level: "Advanced", used: "Daily version control & collaboration" },
+        { name: "Strapi CMS", level: "Proficient", used: "Infosys Equinox Ultra Storefront content layer" },
+        { name: "Data Structures & Algorithms", level: "Proficient", used: "Problem-solving & interviews" },
+      ],
+    },
   ],
+
   experience: [
     {
-      company: "Tech Solutions Inc.",
-      role: "Senior Software Engineer",
-      period: "2024 - Present",
-      location: "San Francisco, CA",
-      description: "Leading frontend architecture and building scalable web applications with Next.js, TypeScript, and micro-frontends.",
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "GraphQL"]
+      role: "Specialist Programmer",
+      company: "Infosys",
+      period: "Jul 2018 — Present",
+      description:
+        "Leading a team of 10 engineers delivering enterprise-scale applications across frontend, backend and cloud — spanning system architecture, micro-frontend composition and performance optimization on the Equinox platform suite.",
+      achievements: [
+        "Led a team of 10 engineers delivering enterprise applications",
+        "Built cloud-native solutions on AWS EC2, S3 and Lambda",
+        "Conducted code reviews and mentored engineers",
+        "Received multiple Outstanding Performance Ratings, client appreciation emails and Employee of the Year awards",
+      ],
+      tech: ["React", "Next.js", "Angular", "Node.js", "Java", "Spring Boot", "AWS", "Microservices"],
     },
-    {
-      company: "Digital Innovations Lab",
-      role: "Full Stack Developer",
-      period: "2022 - 2024",
-      location: "Remote",
-      description: "Developed cloud-native web services, REST APIs, and responsive user interfaces for enterprise clients.",
-      technologies: ["React", "Express.js", "PostgreSQL", "Docker", "AWS", "Tailwind CSS"]
-    },
-    {
-      company: "Creative Web Studio",
-      role: "Frontend Developer",
-      period: "2021 - 2022",
-      location: "Austin, TX",
-      description: "Crafted pixel-perfect interactive landing pages, web tools, and web design component systems.",
-      technologies: ["JavaScript", "React", "CSS3/Sass", "REST APIs", "Git"]
-    }
   ],
+
   projects: [
     {
-      id: "project-1",
-      title: "AI-Powered Task Manager",
-      description: "A smart productivity platform that uses AI to categorize, prioritize, and summarize your daily workflows.",
-      longDescription: "Features real-time collaboration, automatic scheduling, intelligent task tagging, and customizable dashboards.",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "OpenAI API", "Prisma"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://vercel.com",
-      featured: true
+      id: "woodside-energy",
+      title: "Woodside Energy — Geophysics Automation Platform",
+      description:
+        "An automation platform for geophysicists, built to streamline geospatial data workflows with heavy interactive visualization.",
+      badges: ["Data Visualization", "Enterprise"],
+      techLine: "React · TypeScript · Material UI · Esri Maps · DataGrid · Highcharts",
+      detail: [
+        { k: "Overview", v: "An automation platform for geophysicists at Woodside Energy, built to streamline geospatial data workflows." },
+        { k: "Architecture", v: "React/TypeScript frontend with custom Material UI components, Esri Maps for geospatial rendering and Highcharts for data visualization." },
+        { k: "My contribution", v: "Built custom Material UI components, enhanced Esri Maps with DataGrid integration, implemented Highcharts visualizations and optimized rendering of large datasets." },
+        { k: "Challenge", v: "Rendering and interacting with large geospatial datasets without degrading performance." },
+        { k: "Impact", v: "Gave geophysicists a faster, more responsive automation workflow for large-scale datasets." },
+      ],
+      githubUrl: "https://github.com/knive35",
     },
     {
-      id: "project-2",
-      title: "E-Commerce Analytics Dashboard",
-      description: "Comprehensive analytics tool providing real-time sales metrics, customer insights, and inventory tracking.",
-      longDescription: "Built with high-performance charts, dark mode support, exportable reports, and seamless payment gateway integrations.",
-      tags: ["React", "Recharts", "Node.js", "PostgreSQL", "Tailwind CSS"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://vercel.com",
-      featured: true
+      id: "equinox-ultra-storefront",
+      title: "Infosys Equinox Ultra Storefront",
+      description:
+        "A white-labelled micro-frontend e-commerce storefront platform enabling multiple brands to ship independently.",
+      badges: ["Micro Frontend", "E-Commerce"],
+      techLine: "Next.js · React · Module Federation · Strapi CMS · REST APIs",
+      detail: [
+        { k: "Overview", v: "A white-labelled micro-frontend e-commerce storefront platform enabling multiple brands to ship independently." },
+        { k: "Architecture", v: "Next.js/React micro-frontend shell with Module Federation, backed by a Strapi CMS content pipeline and enterprise REST APIs." },
+        { k: "My contribution", v: "Integrated Strapi CMS, implemented reusable components, semantic URLs, dynamic SEO and plugin integrations." },
+        { k: "Challenge", v: "Giving each brand storefront independent deployability without breaking the shared UI contract or SEO." },
+        { k: "Impact", v: "Enabled multiple brand storefronts to ship from one codebase with dynamic SEO and independent release cycles." },
+      ],
+      githubUrl: "https://github.com/knive35",
     },
     {
-      id: "project-3",
-      title: "Cloud File Vault & Sharing",
-      description: "Secure, end-to-end encrypted file storage and instant sharing web application.",
-      longDescription: "Includes link expiration, password protection, file previewers, and drag-and-drop uploads.",
-      tags: ["Next.js", "AWS S3", "TypeScript", "Tailwind CSS", "NextAuth.js"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://vercel.com",
-      featured: true
+      id: "infosys-equinox",
+      title: "Infosys Equinox",
+      description:
+        "The core Infosys Equinox platform: analytics dashboards, reporting modules and a drag-and-drop website builder.",
+      badges: ["Analytics", "Full Stack"],
+      techLine: "React · Angular · Material UI · Highcharts · Spring Boot",
+      detail: [
+        { k: "Overview", v: "The core Infosys Equinox platform: analytics dashboards, reporting modules and a drag-and-drop website builder." },
+        { k: "Architecture", v: "React and Angular frontends with Highcharts visualizations, Material UI components and Spring Boot services." },
+        { k: "My contribution", v: "Built analytics dashboards, reporting modules and drag-and-drop website builder functionality; improved performance through lazy loading and reusable components." },
+        { k: "Challenge", v: "Keeping a large, feature-rich enterprise dashboard fast and maintainable as functionality grew." },
+        { k: "Impact", v: "Improved frontend performance through lazy loading and a reusable component library adopted across the platform." },
+      ],
+      githubUrl: "https://github.com/knive35",
     },
-    {
-      id: "project-4",
-      title: "Developer Portfolio Template",
-      description: "Modern, clean, and fast personal portfolio template built with Next.js App Router and Tailwind CSS.",
-      tags: ["Next.js", "Tailwind CSS", "TypeScript", "Vercel"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://vercel.com",
-      featured: false
-    }
   ],
-  skillCategories: [
-    {
-      category: "Frontend Development",
-      skills: [
-        { name: "React / Next.js", level: "Advanced" },
-        { name: "TypeScript / JavaScript", level: "Advanced" },
-        { name: "Tailwind CSS / HTML5 / CSS3", level: "Advanced" },
-        { name: "State Management (Zustand, Redux)", level: "Proficient" }
-      ]
-    },
-    {
-      category: "Backend & Databases",
-      skills: [
-        { name: "Node.js / Express", level: "Advanced" },
-        { name: "REST APIs & GraphQL", level: "Advanced" },
-        { name: "PostgreSQL / MongoDB", level: "Proficient" },
-        { name: "Prisma ORM", level: "Proficient" }
-      ]
-    },
-    {
-      category: "DevOps & Tools",
-      skills: [
-        { name: "Git / GitHub Actions", level: "Advanced" },
-        { name: "Vercel / AWS Cloud", level: "Proficient" },
-        { name: "Docker", level: "Intermediate" },
-        { name: "Jest / React Testing Library", level: "Proficient" }
-      ]
-    }
-  ]
+
+  architecture: [
+    { name: "React / Next.js Micro-Frontends", tooltip: "Independently deployable UI modules composed at runtime via Module Federation." },
+    { name: "API Gateway", tooltip: "Single entry point routing frontend requests to the right backend service." },
+    { name: "Spring Boot Services", tooltip: "Java microservices handling business logic, each owning its own domain." },
+    { name: "Data Layer", tooltip: "MongoDB, MySQL and PostgreSQL — storage tuned to each service's needs." },
+    { name: "AWS (EC2 / S3 / Lambda)", tooltip: "Hosting, storage and event-driven compute underneath the services." },
+  ],
+
+  languages: [
+    { name: "JavaScript / TypeScript", width: "88%" },
+    { name: "Java", width: "68%" },
+    { name: "HTML / CSS", width: "52%" },
+  ],
+
+  socials: [
+    { name: "GitHub", url: "https://github.com/knive35", iconName: "github" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/kamesh35/", iconName: "linkedin" },
+    { name: "Email", url: "mailto:kameshburde35@gmail.com", iconName: "mail" },
+  ],
+
+  email: "kameshburde35@gmail.com",
+  resumeUrl: "/resume.pdf",
 };

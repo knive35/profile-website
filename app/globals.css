@@ -2,14 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-}
-
-.dark {
-  --background: #090d16;
-  --foreground: #f8fafc;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 html {
@@ -17,34 +11,79 @@ html {
 }
 
 body {
-  color: var(--foreground);
-  background-color: var(--background);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  background: #f2f2f3;
+  color: #1d1f20;
+  font-family: var(--font-barlow), system-ui, sans-serif;
   overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(89, 128, 166, .3);
+}
+
+a {
+  color: #416180;
+}
+a:hover {
+  color: #5980a6;
+}
+
+.grid-bg {
+  position: relative;
+  background: #f2f2f3;
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(29, 31, 32, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 31, 32, .05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Blueprint corner registration marks */
+.blueprint {
+  position: relative;
+}
+.blueprint > .corner {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  color: rgba(29, 31, 32, .55);
+}
+.blueprint > .corner::before,
+.blueprint > .corner::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+.blueprint > .corner::before { left: 5px; top: 0; width: 1px; height: 100%; }
+.blueprint > .corner::after { top: 5px; left: 0; width: 100%; height: 1px; }
+.blueprint > .corner.tl { top: -6px; left: -6px; }
+.blueprint > .corner.tr { top: -6px; right: -6px; }
+.blueprint > .corner.bl { bottom: -6px; left: -6px; }
+.blueprint > .corner.br { bottom: -6px; right: -6px; }
+
+@keyframes kc-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(89, 128, 166, .5); }
+  70% { box-shadow: 0 0 0 7px rgba(89, 128, 166, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(89, 128, 166, 0); }
+}
+
+@keyframes kc-fade {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: rgba(29, 31, 32, .2);
   border-radius: 4px;
 }
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #334155;
-}
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: rgba(29, 31, 32, .35);
 }

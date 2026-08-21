@@ -1,24 +1,31 @@
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 import { ReactNode } from "react";
+import { Barlow, Barlow_Condensed } from "next/font/google";
+
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-barlow",
+  display: "swap",
+});
+
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-barlow-condensed",
+  display: "swap",
+});
 
 export const metadata = {
-  title: "Kamesh — Profile",
-  description: "Personal profile website",
+  title: "Kamesh Burde — Developer Command Center",
+  description:
+    "Kamesh Burde — Senior Software Engineer, Full Stack & Cloud. Specialist Programmer L3 at Infosys.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="system">
-          <Header />
-          <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">{children}</main>
-          <Footer />
-        </ThemeProvider>
-      </body>
+    <html lang="en" className={`${barlow.variable} ${barlowCondensed.variable}`}>
+      <body className="grid-bg">{children}</body>
     </html>
   );
 }
