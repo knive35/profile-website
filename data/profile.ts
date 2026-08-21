@@ -55,11 +55,6 @@ export interface ArchNode {
   tooltip: string;
 }
 
-export interface LanguageBar {
-  name: string;
-  width: string;
-}
-
 export interface ProfileData {
   name: string;
   title: string;
@@ -79,10 +74,11 @@ export interface ProfileData {
   experience: ExperienceItem[];
   projects: ProjectItem[];
   architecture: ArchNode[];
-  languages: LanguageBar[];
   socials: SocialLink[];
   email: string;
   resumeUrl: string;
+  leetcodeUsername: string;
+  leetcodeUrl: string;
 }
 
 export const profileData: ProfileData = {
@@ -278,12 +274,6 @@ export const profileData: ProfileData = {
     { name: "AWS (EC2 / S3 / Lambda)", tooltip: "Hosting, storage and event-driven compute underneath the services." },
   ],
 
-  languages: [
-    { name: "JavaScript / TypeScript", width: "88%" },
-    { name: "Java", width: "68%" },
-    { name: "HTML / CSS", width: "52%" },
-  ],
-
   socials: [
     { name: "GitHub", url: "https://github.com/knive35", iconName: "github" },
     { name: "LinkedIn", url: "https://www.linkedin.com/in/kamesh35/", iconName: "linkedin" },
@@ -292,4 +282,6 @@ export const profileData: ProfileData = {
 
   email: "kameshburde35@gmail.com",
   resumeUrl: "/resume.pdf",
+  leetcodeUsername: "burde",
+  leetcodeUrl: "https://leetcode.com/u/burde/",
 };
